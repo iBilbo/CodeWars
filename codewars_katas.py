@@ -84,5 +84,52 @@ def longest(s1, s2):
             uniqs1 += letter
 
     return "".join(sorted(uniqs1))
- 
+
+"""
+6kyu. INSTRUCTIONS. Write a function that accepts an array of 10 integers (between 0 and 9), that returns a string of those numbers in the form of a phone number.
+Example:
+
+create_phone_number([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) # => returns "(123) 456-7890"
+
+The returned format must be correct in order to complete this challenge.
+Don't forget the space after the closing parentheses!
+
+"""
+def create_phone_number(n):
+    return("(" + str(n[0]) + str(n[1]) + str(n[2]) + ") " + str(n[3]) + str(n[4]) + str(n[5]) + "-" + str(n[6]) + str(n[7]) + str(n[8]) + str(n[9]))
+
+#Other options
+def create_phone_number(n):
+  return "({}{}{}) {}{}{}-{}{}{}{}".format(*n)
+
+def create_phone_number(n):
+  str1 =  ''.join(str(x) for x in n[0:3])
+  str2 =  ''.join(str(x) for x in n[3:6])
+  str3 =  ''.join(str(x) for x in n[6:10])
+  return '({}) {}-{}'.format(str1, str2, str3)
+
+"""
+You probably know the "like" system from Facebook and other pages. People can "like" blog posts, pictures or other items. We want to create the text that should be displayed next to such an item.
+
+Implement a function likes :: [String] -> String, which must take in input array, containing the names of people who like an item. It must return the display text as shown in the examples:
+
+likes [] // must be "no one likes this"
+likes ["Peter"] // must be "Peter likes this"
+likes ["Jacob", "Alex"] // must be "Jacob and Alex like this"
+likes ["Max", "John", "Mark"] // must be "Max, John and Mark like this"
+likes ["Alex", "Jacob", "Mark", "Max"] // must be "Alex, Jacob and 2 others like this"
+
+For 4 or more names, the number in and 2 others simply increases.
+"""
+def likes(names):
+    if len(names) == 0:
+        return "no one likes this"
+    elif len(names) == 1:
+        return names[0] + " likes this"
+    elif len(names) == 2:
+         return names[0] + " and " + names[1] + " like this"
+    elif len(names) == 3:
+         return names[0] + ", " + names[1] + " and " + names[2] + " like this"
+    else:
+        return names[0] + ", " + names[1] + " and " + str(len(names) - 2) + " others like this"
  
